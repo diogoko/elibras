@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Libras-2016";
+    src: url("Libras-2016.ttf");
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+
+canvas {
+    border: 1px solid black;
+}
