@@ -1,3 +1,5 @@
+import Hammer from 'hammerjs';
+
 function formatarLinha(linha) {
     return linha.normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
@@ -30,4 +32,55 @@ function atualizarSinais() {
     }
 }
 
-document.getElementById('textareaTexto').addEventListener('keyup', atualizarSinais);
+
+class Pagina {
+    get textareaTexto() {
+        return document.getElementById('textareaTexto');
+    }
+
+    get canvasSinais() {
+        return document.getElementById('canvasSinais');
+    }
+
+    get menuTexto() {
+        return document.getElementById('menuTexto');
+    }
+
+    get menuSinais() {
+        return document.getElementById('menuSinais');
+    }
+
+    constructor() {
+        this.mostrarCanvasSinais = this.mostrarCanvasSinais.bind(this);
+        this.mostrarTextareaTexto = this.mostrarTextareaTexto.bind(this);
+    }
+
+    configurarEventos() {
+        let hammerTextareaTexto = new Hammer(this.textareaTexto);
+        hammerTextareaTexto.on('panleft', this.mostrarCanvasSinais);
+
+        let hammerCanvasSinais = new Hammer(this.canvasSinais);
+        hammerCanvasSinais.on('panright', this.mostrarTextareaTexto);
+        
+        this.menuTexto.addEventListener('click', this.mostrarTextareaTexto);
+
+        this.menuSinais.addEventListener('click', this.mostrarCanvasSinais);
+    }
+
+    mostrarCanvasSinais() {
+        this.menuTexto.classList.remove('selecionado');
+        this.menuSinais.classList.add('selecionado');
+        console.log('sinais');
+    }
+    
+    mostrarTextareaTexto() {
+        this.menuTexto.classList.add('selecionado');
+        this.menuSinais.classList.remove('selecionado');
+        console.log('texto');
+    }
+    
+}
+
+let pagina = new Pagina();
+pagina.configurarEventos();
+pagina.mostrarTextareaTexto();
