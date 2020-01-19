@@ -58,15 +58,21 @@ textarea {
     text-align: center;
     border: none;
     resize: none;
-    background: yellow;
+    background: silver;
+}
+
+#divTexto {
+    z-index: 2;
 }
 
 #divSinais {
+    z-index: 1;
     /*display: none;*/
     /*visibility: hidden;*/
 }
 
 canvas {
+    background: white;
     /*border: 1px solid black;*/
     /*visibility: hidden;*/
 }
