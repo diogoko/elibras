@@ -12,8 +12,9 @@ body {
     overflow: hidden;
 }
 
-body, textarea {
+body {
     font-family: Roboto, sans-serif;
+    font-size: 16px;
 }
 
 .wrapper {
@@ -63,6 +64,7 @@ textarea {
     text-align: center;
     border: none;
     resize: none;
+    font-family: Consolas, 'Courier New', Courier, monospace;
 }
 
 #divTexto {

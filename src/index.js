@@ -43,11 +43,13 @@ class Pagina {
     configurarEventos() {
         window.addEventListener('resize', this.redimensionarCanvas);
 
+        /*
         let hammerTextareaTexto = new Hammer(this.textareaTexto);
         hammerTextareaTexto.on('panleft', this.mostrarCanvasSinais);
 
         let hammerCanvasSinais = new Hammer(this.canvasSinais);
         hammerCanvasSinais.on('panright', this.mostrarTextareaTexto);
+        */
         
         this.menuTexto.addEventListener('click', this.mostrarTextareaTexto);
 
@@ -129,7 +131,9 @@ class Pagina {
         const style = this.textareaTexto.style;
         style.backgroundColor = this.corFundo;
         style.color = this.corTexto;
-        style.fontSize = `${this.tamanhoFonte}px`;
+        const fatorAjuste = 0.75;
+        const tamanhoFonteAjustado = Math.round(this.tamanhoFonte * fatorAjuste);
+        style.fontSize = `${tamanhoFonteAjustado}px`;
     }
 }
 
