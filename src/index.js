@@ -31,8 +31,13 @@ class Pagina {
         this.redimensionarCanvas = this.redimensionarCanvas.bind(this);
         this.formatarTexto = this.formatarTexto.bind(this);
         this.atualizarSinais = this.atualizarSinais.bind(this);
+        this.atualizarEstiloTexto = this.atualizarEstiloTexto.bind(this);
 
         this.jaDesenhou = false;
+
+        this.corFundo = 'darkblue';
+        this.corTexto = 'white';
+        this.tamanhoFonte = 48;
     }
 
     configurarEventos() {
@@ -98,28 +103,38 @@ class Pagina {
     }
     
     atualizarSinais() {
-        const texto = this.textareaTexto.value;
         const canvas = this.canvasSinais;
         const context = canvas.getContext('2d');
-        const fontSize = 48;
-        const alturaLinha = fontSize * 1.0;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.font = `${fontSize}px Libras-2016`;
-        context.fillStyle = 'blue';
+
+        context.fillStyle = this.corFundo;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        context.font = `${this.tamanhoFonte}px Libras-2016`;
+        context.fillStyle = this.corTexto;
         context.textAlign = 'center';
     
+        const texto = this.textareaTexto.value;
         const linhas = this.formatarTexto(texto);
+        const alturaLinha = this.tamanhoFonte * 1.0;
         const alturaTexto = linhas.length * alturaLinha;
         let y = (canvas.height - alturaTexto) / 2 + alturaLinha;
         for (let i = 0; i < linhas.length; i++) {
             context.fillText(linhas[i], canvas.width / 2, y, canvas.width);
             y += alturaLinha;
         }
-        console.log('escreveu');
-    }    
+        //console.log('escreveu');
+    }
+
+    atualizarEstiloTexto() {
+        const style = this.textareaTexto.style;
+        style.backgroundColor = this.corFundo;
+        style.color = this.corTexto;
+        style.fontSize = `${this.tamanhoFonte}px`;
+    }
 }
 
 let pagina = new Pagina();
 pagina.configurarEventos();
+pagina.atualizarEstiloTexto();
 pagina.mostrarTextareaTexto();
 pagina.redimensionarCanvas();
