@@ -3,25 +3,70 @@
     src: url("Libras-2016.ttf");
 }
 
+html, body, .wrapper {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper > main {
+    flex-grow: 1;
+    position: relative;
+}
+
 nav ul {
     padding: 0;
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
 }
 
 nav ul > li {
     cursor: pointer;
     list-style: none;
+    flex-grow: 1;
+    text-align: center;
+    background: #efcccc;
+    padding: 12px;
+}
+
+main > div {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .selecionado {
     color: red;
+    background: gray;
 }
 
 textarea {
     width: 100%;
-    height: 200px;
+    height: 100%;
     text-align: center;
+    border: none;
+    resize: none;
+    background: yellow;
+}
+
+#divSinais {
+    /*display: none;*/
+    /*visibility: hidden;*/
 }
 
 canvas {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
+    /*visibility: hidden;*/
 }
